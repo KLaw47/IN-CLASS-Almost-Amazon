@@ -20,11 +20,12 @@ const viewAuthor = (obj) => {
   <h5>Books</h5>`;
 
   const array = obj.authorBooks;
-  array.forEach((item) => {
+  array.forEach((book) => {
     bookString += `
       <div class="mt-5 d-flex flex-wrap">
       <div class="d-flex flex-column">
-        <img src=${item.image} alt=${item.title} style="width: 300px;">
+        <img src=${book.image} alt=${book.title} style="width: 300px;">
+        <h2>${book.title}</h2>
         </div>
       </div>`;
   });
