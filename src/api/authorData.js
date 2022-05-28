@@ -6,7 +6,13 @@ const dbUrl = firebaseConfig.databaseURL;
 // FIXME:  GET ALL AUTHORS
 const getAuthors = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/authors.json`)
-    .then((response) => resolve(Object.values(response.data)))
+    .then((response) => {
+      if (response.data) {
+        resolve(Object.values(response.data));
+      } else {
+        resolve([]);
+      }
+    })
     .catch((error) => reject(error));
 });
 
@@ -39,7 +45,11 @@ const deleteSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // FIXME: UPDATE AUTHOR
-const updateAuthor = () => {};
+const updateAuthor = (authorObject) => new Promise((resovle, reject) => {
+  axios.patch(`${dbUrl}/authors/${authorObject.firebaseKey}.json`, authorObject)
+    .then(() => getAuthors().then(resovle))
+    .catch(reject);
+});
 
 const favoriteAuthors = () => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/authors.json?orderBy="favorite"&equalTo=true`)

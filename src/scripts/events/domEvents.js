@@ -1,10 +1,11 @@
-import { deleteBook } from '../../api/bookData';
+import { deleteBook, updateBook } from '../../api/bookData';
 import { viewBookDetails, viewAuthorDetails, deleteAuthorBooks } from '../../api/mergedData';
 import { showAuthors } from '../components/pages/authors';
 import { showBooks } from '../components/pages/books';
 import viewBook from '../components/pages/viewBook';
 import viewAuthor from '../components/pages/viewAuthor';
 import addBookForm from '../components/forms/addBookForm';
+import { updateAuthor } from '../../api/authorData';
 
 const domEvents = () => {
   document.querySelector('#main-container').addEventListener('click', (e) => {
@@ -23,10 +24,11 @@ const domEvents = () => {
       addBookForm();
     }
 
-    // complete TODO: CLICK EVENT EDITING/UPDATING A BOOK
+    // TODO: CLICK EVENT EDITING/UPDATING A BOOK
     if (e.target.id.includes('edit-book-btn')) {
-      console.warn('EDIT BOOK', e.target.id);
-      console.warn(e.target.id.split('--'));
+      const [, bookFirebaseKey] = e.targert.id.split('--');
+
+      updateBook(bookFirebaseKey).then((bookObject) =)
     }
     // complete TODO: CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
