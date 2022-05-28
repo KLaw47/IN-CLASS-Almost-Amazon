@@ -20,11 +20,7 @@ const domEvents = () => {
 
     // TODO: CLICK EVENT FOR SHOWING FORM FOR ADDING A BOOK
     if (e.target.id.includes('add-book-btn')) {
-      const payload = {
-        firebaseKey :
-        
-      }
-      addBookForm(payload);
+      addBookForm();
     }
 
     // complete TODO: CLICK EVENT EDITING/UPDATING A BOOK
