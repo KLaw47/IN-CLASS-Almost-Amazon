@@ -15,7 +15,7 @@ const navigationEvents = () => {
     booksOnSale().then((saleBooksArray) => showBooks(saleBooksArray));
   });
 
-  // complete TODO: ALL BOOKS
+  // ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
     getBooks().then((booksArray) => showBooks(booksArray));
   });
