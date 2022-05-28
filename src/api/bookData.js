@@ -40,7 +40,7 @@ const createBook = (bookObject) => new Promise((resolve, reject) => {
       const payload = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/books/${response.data.name}.json`, payload)
         .then(() => {
-          getBooks(bookObject.uid).then(resolve);
+          getBooks(bookObject).then(resolve);
         });
     }).catch((error) => reject(error));
 });
