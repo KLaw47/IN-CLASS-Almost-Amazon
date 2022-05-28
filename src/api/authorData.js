@@ -11,7 +11,16 @@ const getAuthors = () => new Promise((resolve, reject) => {
 });
 
 // FIXME: CREATE AUTHOR
-const createAuthor = () => {};
+const createAuthor = (newAuthor) => new Promise((resolve, reject) => {
+  axios.post(`${dbUrl}/authors.json`, newAuthor)
+    .then((response) => {
+      const payload = { firebaseKey: response.data.name };
+      axios.patch(`${dbUrl}/authors/${response.data.name}.json`, payload)
+        .then(() => {
+          getAuthors(newAuthor).then(resolve);
+        });
+    }).catch((error) => reject(error));
+});
 
 // FIXME: GET SINGLE AUTHOR
 const getSingleAuthor = (firebaseKey) => new Promise((resolve, reject) => {
