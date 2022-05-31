@@ -18,7 +18,7 @@ const getBooks = () => new Promise((resolve, reject) => {
 });
 
 // TODO: DELETE BOOK
-const deleteBook = (firebaseKey) => new Promise((resolve, reject) => {
+const deleteBook = (uid, firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/books/${firebaseKey}.json`)
     .then(() => {
       getBooks().then((booksArray) => resolve(booksArray));
@@ -40,7 +40,7 @@ const createBook = (bookObject) => new Promise((resolve, reject) => {
       const payload = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/books/${response.data.name}.json`, payload)
         .then(() => {
-          getBooks(bookObject).then(resolve);
+          getBooks(bookObject.uid).then(resolve);
         });
     }).catch((error) => reject(error));
 });
