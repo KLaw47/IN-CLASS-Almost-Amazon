@@ -6,7 +6,7 @@ const dbUrl = firebaseConfig.databaseURL;
 
 // TODO: GET BOOKS
 const getBooks = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/books.json`)
+  axios.get(`${dbUrl}/books.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       if (response.data) {
         resolve(Object.values(response.data));
@@ -53,7 +53,7 @@ const updateBook = (bookObject) => new Promise((resolve, reject) => {
 });
 
 // TODO: FILTER BOOKS ON SALE
-const booksOnSale = () => new Promise((resolve, reject) => {
+const booksOnSale = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/books.json?orderBy="sale"&equalTo=true`)
     .then((response) => resolve(Object.values(response.data)))
     .catch((error) => reject(error));

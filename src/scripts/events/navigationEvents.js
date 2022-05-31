@@ -5,7 +5,7 @@ import { showBooks } from '../components/pages/books';
 import signOut from '../helpers/auth/signOut';
 
 // navigation events
-const navigationEvents = () => {
+const navigationEvents = (uid) => {
   // LOGOUT BUTTON
   document.querySelector('#logout-button')
     .addEventListener('click', signOut);
