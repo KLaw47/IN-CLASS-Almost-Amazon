@@ -17,7 +17,7 @@ const navigationEvents = (uid) => {
 
   // ALL BOOKS
   document.querySelector('#all-books').addEventListener('click', () => {
-    getBooks().then((booksArray) => showBooks(booksArray));
+    getBooks(uid).then((booksArray) => showBooks(booksArray));
   });
 
   document.querySelector('#favorite-authors').addEventListener('click', () => {

@@ -5,7 +5,7 @@ import firebaseConfig from './apiKeys';
 const dbUrl = firebaseConfig.databaseURL;
 
 // TODO: GET BOOKS
-const getBooks = () => new Promise((resolve, reject) => {
+const getBooks = (uid) => new Promise((resolve, reject) => {
   axios.get(`${dbUrl}/books.json?orderBy="uid"&equalTo="${uid}"`)
     .then((response) => {
       if (response.data) {
@@ -21,7 +21,7 @@ const getBooks = () => new Promise((resolve, reject) => {
 const deleteBook = (uid, firebaseKey) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/books/${firebaseKey}.json`)
     .then(() => {
-      getBooks().then((booksArray) => resolve(booksArray));
+      getBooks(uid).then((booksArray) => resolve(booksArray));
     })
     .catch((error) => reject(error));
 });
@@ -48,15 +48,17 @@ const createBook = (bookObject) => new Promise((resolve, reject) => {
 // TODO: UPDATE BOOK
 const updateBook = (bookObject) => new Promise((resolve, reject) => {
   axios.patch(`${dbUrl}/books/${bookObject.firebaseKey}.json`, bookObject)
-    .then(() => getBooks().then(resolve))
+    .then(() => getBooks(bookObject.uid).then(resolve))
     .catch(reject);
 });
 
 // TODO: FILTER BOOKS ON SALE
 const booksOnSale = (uid) => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/books.json?orderBy="sale"&equalTo=true`)
-    .then((response) => resolve(Object.values(response.data)))
-    .catch((error) => reject(error));
+  getBooks(uid)
+    .then((uBooksArr) => {
+      const saleBooksArray = uBooksArr.filter((book) => book.sale);
+      resolve(saleBooksArray);
+    }).catch((error) => reject(error));
 });
 
 // TODO: STRETCH...SEARCH BOOKS
