@@ -18,8 +18,8 @@ const getBooks = (uid) => new Promise((resolve, reject) => {
 });
 
 // TODO: DELETE BOOK
-const deleteBook = (uid, firebaseKey) => new Promise((resolve, reject) => {
-  axios.delete(`${dbUrl}/books/${firebaseKey}.json`)
+const deleteBook = (uid) => new Promise((resolve, reject) => {
+  axios.delete(`${dbUrl}/books/${uid}.json`)
     .then(() => {
       getBooks(uid).then((booksArray) => resolve(booksArray));
     })

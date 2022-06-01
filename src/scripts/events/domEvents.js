@@ -29,7 +29,7 @@ const domEvents = (uid) => {
     if (e.target.id.includes('edit-book-btn')) {
       const [, bookFirebaseKey] = e.targert.id.split('--');
 
-      getSingleBook(bookFirebaseKey).then((bookObject) => addBookForm(bookObject));
+      getSingleBook(bookFirebaseKey).then((bookObject) => addBookForm(uid, bookObject));
     }
     // CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
