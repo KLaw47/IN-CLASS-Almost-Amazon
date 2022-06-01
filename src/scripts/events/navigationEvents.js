@@ -33,7 +33,7 @@ const navigationEvents = (uid) => {
     getAuthors(uid).then((authorsArray) => {
       if (authorsArray.length !== 0) {
         showAuthors(authorsArray);
-      } else if (authorsArray === 0) {
+      } else {
         emptyAuthors(authorsArray);
       }
     });
