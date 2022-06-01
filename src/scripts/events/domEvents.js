@@ -27,9 +27,9 @@ const domEvents = (uid) => {
 
     // CLICK EVENT EDITING/UPDATING A BOOK
     if (e.target.id.includes('edit-book-btn')) {
-      const [, bookFirebaseKey] = e.targert.id.split('--');
+      const [, bookId] = e.targert.id.split('--');
 
-      getSingleBook(bookFirebaseKey).then((bookObject) => addBookForm(bookObject));
+      getSingleBook(bookId).then((bookObject) => addBookForm(uid, bookObject));
     }
     // CLICK EVENT FOR VIEW BOOK DETAILS
     if (e.target.id.includes('view-book-btn')) {
