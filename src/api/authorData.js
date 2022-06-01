@@ -51,10 +51,12 @@ const updateAuthor = (authorObject) => new Promise((resovle, reject) => {
     .catch(reject);
 });
 
-const favoriteAuthors = () => new Promise((resolve, reject) => {
-  axios.get(`${dbUrl}/authors.json?orderBy="favorite"&equalTo=true`)
-    .then((response) => resolve(Object.values(response.data)))
-    .catch((error) => reject(error));
+const favoriteAuthors = (uid) => new Promise((resolve, reject) => {
+  getAuthors(uid)
+    .then((uAuthorsArr) => {
+      const faveAuthors = uAuthorsArr.filter((author) => author.fave);
+      resolve(faveAuthors);
+    }).catch((error) => reject(error));
 });
 
 // TODO: GET A SINGLE AUTHOR'S BOOKS
