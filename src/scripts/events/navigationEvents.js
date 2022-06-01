@@ -12,7 +12,7 @@ const navigationEvents = (uid) => {
 
   // complete BOOKS ON SALE
   document.querySelector('#sale-books').addEventListener('click', () => {
-    booksOnSale().then((saleBooksArray) => showBooks(saleBooksArray));
+    booksOnSale(uid).then((saleBooksArray) => showBooks(saleBooksArray));
   });
 
   // ALL BOOKS
@@ -21,7 +21,7 @@ const navigationEvents = (uid) => {
   });
 
   document.querySelector('#favorite-authors').addEventListener('click', () => {
-    favoriteAuthors().then((favAuthorsArray) => showAuthors(favAuthorsArray));
+    favoriteAuthors(uid).then((favAuthorsArray) => showAuthors(favAuthorsArray));
     console.warn('CLICKED FAV AUTHORS');
   });
 
@@ -30,7 +30,7 @@ const navigationEvents = (uid) => {
   // 2. Convert the response to an array because that is what the makeAuthors function is expecting
   // 3. If the array is empty because there are no authors, make sure to use the emptyAuthor function
   document.querySelector('#authors').addEventListener('click', () => {
-    getAuthors().then((authorsArray) => {
+    getAuthors(uid).then((authorsArray) => {
       if (authorsArray.length !== 0) {
         showAuthors(authorsArray);
       } else if (authorsArray === 0) {
