@@ -6,7 +6,6 @@ import domEvents from '../events/domEvents';
 import formEvents from '../events/formEvents';
 import navigationEvents from '../events/navigationEvents';
 import { showBooks } from '../components/pages/books';
-import checkLoginStatus from './checkLoginStatus';
 
 const startApp = (user) => {
   domBuilder(); // BUILD THE DOM
