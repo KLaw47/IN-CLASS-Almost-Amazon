@@ -21,7 +21,7 @@ const navigationEvents = (uid) => {
   });
 
   document.querySelector('#favorite-authors').addEventListener('click', () => {
-    favoriteAuthors(uid).then((favAuthorsArray) => showAuthors(favAuthorsArray));
+    favoriteAuthors(uid).then((faveAuthors) => showAuthors(faveAuthors));
     console.warn('CLICKED FAV AUTHORS');
   });
 

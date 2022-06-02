@@ -10,7 +10,8 @@ const viewAuthor = (obj) => {
   domString += `
   <div class="mt-5 d-flex flex-wrap">
   <div class="text-white ms-5 details">
-  <h5>${obj.first_name} ${obj.last_name} ${obj.favorite ? '<span class="iconify" data-icon="typcn:star" style="color: goldenrod;" data-width="20" data-height="20"></span> Favorite' : ''}</h5>
+  <h5 class="card-title">${obj.favorite ? '<span class="badge bg-info fave-badge"><i class="fa fa-star" aria-hidden="true"></i></span>'
+    : ''}${obj.first_name} ${obj.last_name}</h5>
   Author Email: <a href="mailto:${obj.email}">${obj.email}</a>
   <div class="mt-5">
   <i id="edit-author-btn--${obj.firebaseKey}" class="fas fa-edit btn btn-info"></i>

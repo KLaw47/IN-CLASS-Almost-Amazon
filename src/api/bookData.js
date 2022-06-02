@@ -21,7 +21,7 @@ const getBooks = (uid) => new Promise((resolve, reject) => {
 const deleteBook = (uid) => new Promise((resolve, reject) => {
   axios.delete(`${dbUrl}/books/${uid}.json`)
     .then(() => {
-      getBooks(uid).then((booksArray) => resolve(booksArray));
+      getBooks(uid).then(resolve);
     })
     .catch((error) => reject(error));
 });
@@ -34,13 +34,13 @@ const getSingleBook = (firebaseKey) => new Promise((resolve, reject) => {
 });
 
 // TODO: CREATE BOOK
-const createBook = (bookObject) => new Promise((resolve, reject) => {
+const createBook = (bookObject, uid) => new Promise((resolve, reject) => {
   axios.post(`${dbUrl}/books.json`, bookObject)
     .then((response) => {
       const payload = { firebaseKey: response.data.name };
       axios.patch(`${dbUrl}/books/${response.data.name}.json`, payload)
         .then(() => {
-          getBooks(bookObject.uid).then(resolve);
+          getBooks(uid).then(resolve);
         });
     }).catch((error) => reject(error));
 });

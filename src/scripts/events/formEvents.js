@@ -18,7 +18,7 @@ const formEvents = (uid) => {
         uid
       };
 
-      createBook(bookObject).then((booksArray) => showBooks(booksArray));
+      createBook(bookObject, uid).then((booksArray) => showBooks(booksArray));
     }
 
     // CLICK EVENT FOR EDITING A BOOK
@@ -35,7 +35,7 @@ const formEvents = (uid) => {
         uid
       };
 
-      updateBook(bookObject).then(showBooks);
+      updateBook(bookObject, uid).then(showBooks);
     }
 
     // ADD CLICK EVENT FOR SUBMITTING FORM FOR ADDING AN AUTHOR
@@ -44,10 +44,11 @@ const formEvents = (uid) => {
         email: document.querySelector('#email').value,
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
+        favorite: document.querySelector('#favorite').checked,
         uid
       };
 
-      createAuthor(authorObject).then(showAuthors);
+      createAuthor(authorObject, uid).then(showAuthors);
     }
     // ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('update-author')) {
@@ -55,9 +56,11 @@ const formEvents = (uid) => {
         email: document.querySelector('#email').value,
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
+        favorite: document.querySelector('#favorite').checked,
+        uid
       };
 
-      updateAuthor(authorObject).then(showAuthors);
+      updateAuthor(authorObject, uid).then(showAuthors);
     }
   });
 };
