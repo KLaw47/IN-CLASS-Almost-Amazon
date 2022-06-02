@@ -4,13 +4,13 @@ import renderToDOM from '../../helpers/renderToDom';
 const addAuthorForm = (uid, obj = {}) => {
   clearDom();
   const domString = `
-    <form id="${obj.firebaseKey ? `update-author--${obj.firebaseKey}` : 'submit-author'} class="mb-4">
+  <form id="${obj.firebaseKey ? `update-author--${obj.firebaseKey}` : 'submit-author'}" class="mb-4">
       <div class="form-group">
-        <label for="image">First Name</label>
+        <label for="first-name">First Name</label>
         <input type="text" class="form-control" id="first_name" placeholder="First Name" value"${obj.first_name || ''}'' required>
       </div>
       <div class="form-group">
-        <label for="image">Last Name</label>
+        <label for="last-name">Last Name</label>
         <input type="text" class="form-control" id="last_name" placeholder="Last Name" value''${obj.last_name || ''}'' required>
       </div>
       <div class="form-group">
