@@ -48,7 +48,7 @@ const formEvents = (uid) => {
         uid
       };
 
-      createAuthor(authorObject, uid).then(showAuthors);
+      createAuthor(authorObject, uid).then((authorsArray) => showAuthors(authorsArray));
     }
     // ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('update-author')) {
@@ -60,7 +60,7 @@ const formEvents = (uid) => {
         uid
       };
 
-      updateAuthor(authorObject, uid).then(showAuthors);
+      updateAuthor(authorObject, uid).then((authorsArray) => showAuthors(authorsArray));
     }
   });
 };
