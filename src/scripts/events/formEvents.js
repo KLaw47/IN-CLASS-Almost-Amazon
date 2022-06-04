@@ -52,11 +52,13 @@ const formEvents = (uid) => {
     }
     // ADD CLICK EVENT FOR EDITING AN AUTHOR
     if (e.target.id.includes('update-author')) {
+      const [, firebaseKey] = e.target.id.split('--');
       const authorObject = {
         email: document.querySelector('#email').value,
         first_name: document.querySelector('#first_name').value,
         last_name: document.querySelector('#last_name').value,
         favorite: document.querySelector('#favorite').checked,
+        firebaseKey,
         uid
       };
 
